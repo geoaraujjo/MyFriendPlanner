@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+ <html lang="en">
+
+	<head>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+	  <meta name="author" content="GeeksLabs">
+	  <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+	  <link rel="shortcut icon" href="img/favicon.png">
+	
+	  <title>#{get 'title' /}</title>
+
+	  <!-- Bootstrap CSS -->
+	  <link href="@{'/public/material-kit-master/assets/css/material-kit.min.css'}" rel="stylesheet">
+	  <!-- bootstrap theme -->
+	  <link href="@{'/public/material-kit-master/assets/css/material-kit.css'}" rel="stylesheet">
+	  <!--external css-->
+	  <!-- font icon -->
+	  <link href="@{'/public/NiceAdmin/css/elegant-icons-style.css'}" rel="stylesheet" />
+	  <link href="@{'/public/NiceAdmin/css/font-awesome.min.css'}" rel="stylesheet" />
+	  <!-- easy pie chart-->
+	  <link href="@{'/public/NiceAdmin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css'}" rel="stylesheet" type="text/css" media="screen" />
+	  <!-- owl carousel -->
+	  <link rel="stylesheet" href="@{'/public/NiceAdmin/css/owl.carousel.css'}" type="text/css">
+	  <link href="@{'/public/NiceAdmin/css/jquery-jvectormap-1.2.2.css'}" rel="stylesheet">
+	  <!-- Custom styles -->
+	  <link href="@{'/public/NiceAdmin/css/widgets.css'}" rel="stylesheet">
+	  <link href="@{'/public/NiceAdmin/css/style.css'}" rel="stylesheet">
+	  <link href="@{'/public/NiceAdmin/css/style-responsive.css'}" rel="stylesheet" />
+	  <link href="@{'/public/NiceAdmin/css/xcharts.min.css'}" rel=" stylesheet">
+	  <link href="@{'/public/NiceAdmin/css/jquery-ui-1.10.4.min.css'}" rel="stylesheet">
+	  <!--     Fonts and icons     -->
+  	  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+      <!-- CSS Just for demo purpose, don't include it in your project -->
+      <link href="@{'/public/assets/demo/demo.css'}" rel="stylesheet" />
+	  #{get 'moreStyles' /}
+	</head>
+	
+	<body>
+	
+	  <!-- container section start -->
+	  <section id="container" class="">
+	
+		
+	    <header class="header navbar bg-primary">
+	      <!--logo start-->
+	      <a href="@{Application.index()}" >
+	      <span >
+			<img src="/public/assets/img/planner.png" width = "230" >
+	      </span></a>
+	      <!--logo end-->
+		      
+	      <div class="top-nav notification-row">
+	        <!-- notificatoin dropdown start-->
+	        <ul class="nav pull-right top-menu">
+	          <li class="dropdown">
+	            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+	                            <span class="profile-ava">
+	                                <img src="/uploads/${session.get('IDUsuario')}/${session.get('fotoUsuario')}" width="50" height="50">
+	                            </span>
+	                            
+	                            <span class="username text-dark">
+	                            ${session.get("nomeUsuario")}
+	                            
+	                             </span>
+	                 
+	                            <b class="caret"></b>
+	                        </a>
+	            <ul class="dropdown-menu">
+	              <li>
+	                <a href="@{Usuarios.listar()}"><i class="icon_profile"></i> Dados Pessoais</a>
+	              </li>
+	      
+	              <li>
+	                <a href="@{Compromissos.listar()}"><i class="icon_clock_alt"></i> Compromissos </a>
+	              </li>                    	
+	          
+	      		    <li>
+	                <a href="@{Tarefas.listar()}"><i class="icon_document_alt"></i> Tarefas </a>
+	              </li>
+	          
+	              <li>
+	                <a href="@{Usuarios.calendar()}"><i class="icon_calendar"></i>Calendário</a>
+	              </li>
+	              
+	                <li>
+	                <a href="@{Login.logout()}"><i class="icon_key_alt"></i> Log Out</a>
+	              </li>
+	          		
+	            </ul>
+	          </li>
+	          <!-- user login dropdown end -->
+	        </ul>
+	        <!-- notificatoin dropdown end-->
+	      </div>
+	    </header>
+	    <!--header end-->
+
+	
+	    <!--main content start-->
+	    <section id="main-content">
+	      <section class="wrapper">
+	        <!--overview start-->
+	        
+	        
+	        #{if flash.error}
+
+			      <div class="alert alert-danger">
+			        <div class="container">
+			          <div class="alert-icon">
+			            <i class="material-icons">error_outline</i>
+			          </div>
+			          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+			          </button>
+			          <b>Error:</b>${flash.error}
+			        </div>
+			      </div>
+			#{/if}
+	        
+	        
+	        #{if flash.sucess}
+
+			<div class="alert alert-success">
+		        <div class="container">
+		          <div class="alert-icon">
+		            <i class="material-icons">check</i>
+		          </div>
+		          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+		          </button>
+		          <b>Success:</b> ${flash.sucess}
+		        </div>
+		    </div>
+
+
+
+	        #{/if}
+	        
+	        #{doLayout /}
+      <!-- javascripts -->
+	  <script src="@{'public/material-kit-master/assets/js/core/jquery.min.js'}" type="text/javascript"></script>
+ 	  <script src="@{'public/material-kit-master/assets/js/core/popper.min.js'}" type="text/javascript"></script>
+      <script src="@{'public/material-kit-master/assets/js/plugins/moment.min.js'}"></script>
+	  <script src="@{'public/NiceAdmin/js/jquery.js'}"></script>
+	  <script src="@{'public/NiceAdmin/js/jquery-ui-1.10.4.min.js'}"></script>
+	  <script src="@{'public/NiceAdmin/js/jquery-1.8.3.min.js'}"></script>
+	  <script type="text/javascript" src="@{'public/NiceAdmin/js/jquery-ui-1.9.2.custom.min.js'}"></script>
+	   <script src="@{'public/assets/js/plugins/bootstrap-datetimepicker.js'}" type="text/javascript"></script>
+	  
+	  <!-- bootstrap -->
+	  <script src="@{'public/material-kit-master/assets/js/core/bootstrap-material-design.min.js'}" type="text/javascript"></script>
+	  <!-- nice scroll -->
+	  <script src="@{'public/NiceAdmin/js/jquery.scrollTo.min.js'}"></script>
+	  <script src="@{'public/NiceAdmin/js/jquery.nicescroll.js'}" type="text/javascript"></script>
+	  <!-- charts scripts -->
+	  <script src="@{'public/NiceAdmin/assets/jquery-knob/js/jquery.knob.js'}"></script>
+	  <script src="@{'public/NiceAdmin/js/jquery.sparkline.js'}" type="text/javascript"></script>
+	  <script src="@{'public/NiceAdmin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js'}"></script>
+	  <script src="@{'public/NiceAdmin/js/owl.carousel.js'}"></script>
+	    <!--script for this page only-->
+	    <script src="@{'public/NiceAdmin/js/jquery.rateit.min.js'}"></script>
+	    <!-- custom select -->
+	    <script src="@{'public/NiceAdmin/js/jquery.customSelect.min.js'}"></script>
+	    <script src="@{'public/NiceAdmin/assets/chart-master/Chart.js'}"></script>
+		<script src="@{'public/assets/js/plugins/nouislider.min.js'}" type="text/javascript"></script>
+		
+  		<script src="@{'public/assets/js/plugins/bootstrap-datetimepicker.js'}" type="text/javascript"></script>
+	    <!--custome script for all page-->
+	    <script src="@{'public/NiceAdmin/js/scripts.js'}"></script>
+	    <!-- custom script for this page-->
+	    <script src="@{'public/NiceAdmin/js/sparkline-chart.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/easy-pie-chart.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/jquery-jvectormap-1.2.2.min.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/jquery-jvectormap-world-mill-en.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/xcharts.min.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/jquery.autosize.min.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/jquery.placeholder.min.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/gdp-data.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/morris.min.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/sparklines.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/charts.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/jquery.slimscroll.min.js'}"></script>
+	    <script src="@{'public/assets/js/material-kit.js'}" type="text/javascript"></script>
+	      
+  		<!--   Core JS Files   -->
+  		<script src="@{'public/assets/js/core/bootstrap-material-design.min.js'}" type="text/javascript"></script>
+	    
+	    #{get 'moreScripts' /}
+	    <script>
+	      //knob
+	      $(function() {
+	        $(".knob").knob({
+	          'draw': function() {
+	            $(this.i).val(this.cv + '%')
+	          }
+	        })
+	      });
+	
+	      //carousel
+	      $(document).ready(function() {
+	        $("#owl-slider").owlCarousel({
+	          navigation: true,
+	          slideSpeed: 300,
+	          paginationSpeed: 400,
+	          singleItem: true
+	
+	        });
+	      });
+	
+	      //custom select box
+	
+	      $(function() {
+	        $('select.styled').customSelect();
+	      });
+	
+	      /* ---------- Map ---------- */
+	      $(function() {
+	        $('#map').vectorMap({
+	          map: 'world_mill_en',
+	          series: {
+	            regions: [{
+	              values: gdpData,
+	              scale: ['#000', '#000'],
+	              normalizeFunction: 'polynomial'
+	            }]
+	          },
+	          backgroundColor: '#eef3f7',
+	          onLabelShow: function(e, el, code) {
+	            el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+	          }
+	        });
+	      });
+	    </script>
+		
+		<script>
+    $(document).ready(function() {
+      //init DateTimePickers
+      materialKit.initFormExtendedDatetimepickers();
+
+        });
+
+
+    function scrollToDownload() {
+      if ($('.section-download').length != 0) {
+        $("html, body").animate({
+          scrollTop: $('.section-download').offset().top
+        }, 1000);
+      }
+    }
+
+  </script>
+
+	  </section>
+	  </section>
+	  </section>
+
+		
+	</body>
+
+</html>

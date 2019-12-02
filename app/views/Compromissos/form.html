@@ -1,0 +1,58 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+
+			<section class="container">
+            <section class="card card-login col-lg-8 md-auto " >
+			<div class="card-header card-header-warning text-center ">
+                <h4 class="card-text">Adicione seu compromisso</h4>
+              </div>
+			<form action="@{Compromissos.salvar()}" method = "post" class="form-horizontal" role="form" >
+				<input type = "hidden" name = "compromisso.id" value = "${compromisso?.id}"><br>
+				<div class="form-group">
+                    <label for="inputTitle" class="col-lg-5 control-label">Título</label>
+                    <div class="col-lg-10">
+                      <input value="${compromisso?.titulo}" type="text" class="form-control" name="compromisso.titulo" id="inputTitle" placeholder="Titulo">
+                     <span class="text-danger" > #{error 'compromisso.titulo' /} </span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="inputDescricao" class="col-lg-4 control-label">Descrição</label>
+                    <div class="col-lg-10">
+                      <input type="text" class="form-control" id="inputDescricao" placeholder="Descrição"
+                      name = "compromisso.descricao" size = "100" value = "${compromisso?.descricao}">
+                    	<span class="text-danger" >#{error 'compromisso.descricao' /}</span>
+                    </div>
+                  </div>
+		                 
+				 <div class="form-group">
+		             <label class="col-lg-3 col-sm-4">Data</label>
+		             <div class="col-sm-10">
+		             	<input class = "form-control datetimepicker" type = "text" name = "compromisso.data" value = "${compromisso?.data}">
+		                <span class="text-danger" > #{error 'compromisso.data' /} </span>
+		             </div>
+		            </div>
+		        
+		              Selecione a cor que deseja <input type="color" name="compromisso.cor" value="${compromisso?.cor}"><br><br>
+                  	</div>
+                  <br>
+                  <br>		
+					<div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                      <button type="submit" name= "add" class="btn btn-primary">Adicionar</button>
+                    </div>
+                  </div>
+                  
+				</form>
+				<br>
+				</div>
+				</section>
+                     <div class="form-group top-center">
+            	<div class="col-lg-offset-2 col-lg-10">
+             	<a href= "@{Application.index()}"><button class="btn btn-primary" t>Voltar</button></a>
+            	</div>
+
+		</div>
+
+</section>

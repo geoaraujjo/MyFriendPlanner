@@ -1,0 +1,87 @@
+#{extends 'main.html' /}
+#{set title:'Add tarefa' /}
+
+  <br>
+  <br>
+  <br>         
+			<section class="container">
+            <section class="card card-login col-lg-8 md-auto " >
+			<div class="card-header card-header-warning text-center ">
+                <h4 class="card-text">Adicione sua tarefa</h4>
+              </div>
+              
+				<form action = "@{Tarefas.salvar()}" method = "post" class="form-horizontal" role="form"> 
+				<input type = "hidden" name = "tarefa1.id" value = "${tarefa?.id}"><br>
+                  
+                  <div class="form-group">
+                    <label for="inputTitle" class="col-lg-2 control-label">Título</label>
+                    <div class="col-lg-10">
+                      <input value="${tarefa1?.titulo}" type="text" class="form-control" name="tarefa1.titulo" id="inputTitle" placeholder="Titulo">
+                       <span class="text-danger" > #{error 'tarefa1.titulo' /} </span>
+                    
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="inputDescricao" class="col-lg-2 control-label">Descrição</label>
+                    <div class="col-lg-10">
+                      <input type="text" class="form-control" id="inputDescricao" placeholder="Descrição"
+                      name = "tarefa1.descricao" size = "100" value = "${tarefa1?.descricao}">
+                       <span class="text-danger" > #{error 'tarefa1.descricao' /} </span>
+
+                    </div>
+                  </div>
+                  
+                  
+				 <div class="form-group">
+		             <label class="col-lg-3 col-sm-4">Prazo</label>
+		             <div class="col-sm-10">
+		             	<input class = "form-control datetimepicker" type = "text" name = "tarefa1.prazo" value = "${tarefa1?.prazo}">
+		                <span class="text-danger" > #{error 'tarefa1.prazo' /} </span>
+		             </div>
+		            </div>
+		             
+		          
+                <div class="form-group form-check">
+                	<label class="col-lg-3 col-sm-4">Prioridade</label>
+                		<label class="form-check-label">
+                  		<input class="form-check-input" type="radio" name="tarefa1.prioridade" value="sim"#{if tarefa?.prioridade == "sim"} checked #{/if}> Sim
+                  			<span class="circle">
+                    		<span class="check"></span>
+                  			</span>
+                		</label>
+                		<label class="form-check-label">
+                  		<input class="form-check-input" type="radio" name="tarefa1.prioridade" value="nao"#{if tarefa?.prioridade == "não"} checked #{/if}> Não
+                  			<span class="circle">
+                    		<span class="check"></span>
+                  			</span>
+                		</label>
+                		<span class="text-danger" > #{error 'tarefa1.prioridade' /} </span>
+              		</div>
+              
+             <br>
+               		<div class="form-group">
+		              <label class="col-lg-3 col-sm-4">Selecione a cor</label>
+		              <input type="color" name="tarefa1.cor" value="${tarefa1?.cor}"><br><br>
+                      <span class="text-danger" > #{error 'tarefa1.cor' /} </span>
+                  	</div>
+            
+                  <div class="form-group top-center">
+                    <div class="col-md-8 ml-auto mr-auto">
+                      <button type="submit" name= "add" class="btn btn-primary btn-sm">Adicionar</button>
+                    </div>
+                  </div>
+                  
+                   </form>
+                   </div>
+                
+         </section>
+	</section>
+
+                <div class="top-center">
+            	<div class="col-md-8 ml-auto mr-auto">
+             	<a href= "@{Application.index()}"><button class="btn btn-sm">Voltar</button></a>
+            	</div>
+          		</div>
+          		
+          		

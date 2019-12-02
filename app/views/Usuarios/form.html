@@ -1,0 +1,208 @@
+#{set title:'Home' /}
+
+<meta charset="utf-8">
+	  <!-- Bootstrap CSS -->
+	  <link href="@{'/public/material-kit-master/assets/css/material-kit.min.css'}" rel="stylesheet">
+	  <!-- bootstrap theme -->
+	  <link href="@{'/public/material-kit-master/assets/css/material-kit.css'}" rel="stylesheet">
+	  <!--external css-->
+	  <!-- font icon -->
+	  <link href="@{'/public/NiceAdmin/css/elegant-icons-style.css'}" rel="stylesheet" />
+	  <link href="@{'/public/NiceAdmin/css/font-awesome.min.css'}" rel="stylesheet" />
+	  <!-- full calendar css-->
+	  <link href="@{'/public/NiceAdmin/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css'}" rel="stylesheet" />
+	  <link href="@{'/public/NiceAdmin/assets/fullcalendar/fullcalendar/fullcalendar.css'}" rel="stylesheet" />
+	  <!-- easy pie chart-->
+	  <link href="@{'/public/NiceAdmin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css'}" rel="stylesheet" type="text/css" media="screen" />
+	  <!-- owl carousel -->
+	  <link rel="stylesheet" href="@{'/public/NiceAdmin/css/owl.carousel.css'}" type="text/css">
+	  <link href="@{'/public/NiceAdmin/css/jquery-jvectormap-1.2.2.css'}" rel="stylesheet">
+	  <!-- Custom styles -->
+	  <link rel="stylesheet" href="@{'/public/NiceAdmin/css/fullcalendar.css'}">
+	  <link href="@{'/public/NiceAdmin/css/widgets.css'}" rel="stylesheet">
+	  <link href="@{'/public/NiceAdmin/css/style.css'}" rel="stylesheet">
+	  <link href="@{'/public/NiceAdmin/css/style-responsive.css'}" rel="stylesheet" />
+	  <link href="@{'/public/NiceAdmin/css/xcharts.min.css'}" rel=" stylesheet">
+	  <link href="@{'/public/NiceAdmin/css/jquery-ui-1.10.4.min.css'}" rel="stylesheet">
+
+	        #{if flash.sucess}
+			<div class="alert alert-success">
+		        <div class="container">
+		          <div class="alert-icon">
+		            <i class="material-icons"></i>
+		          </div>
+		          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+		          </button>
+		          <b>Success:</b> ${flash.sucess}
+		        </div>
+		    </div>	        
+		   #{/if}
+	        
+	        
+	        #{if flash.error}
+			      <div class="alert alert-danger">
+			        <div class="container">
+			          <div class="alert-icon">
+			            <i class="material-icons"></i>
+			          </div>
+			          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			            <span aria-hidden="true"><i class="material-icons"></i></span>
+			          </button>
+			          <b>Error:</b>${flash.error}
+			        </div>
+			      </div>	        
+			 #{/if}
+
+
+  <div class="page-header2" style = "background-image: url('/public/assets/img/bg8.jpg');"> 
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 ml-auto mr-auto">
+          <div class="card card-login">
+              <div class="card-header card-header-primary text-center">
+                <h4 class="card-text">Cadastro</h4>
+              </div>
+
+          <form class="form-horizontal" action="@{Usuarios.salvar()}" method="post" enctype="multipart/form-data">
+          	<input type = "hidden" name = "usuario.id" value = "${usuario?.id}">
+          	
+            <div class="form-group"> <br>
+             <label class="col-lg-10 control-label">Nome</label>
+             <div class="col-sm-10">
+             	<input type="text" class="form-control" name="usuario.nome" value="${usuario?.nome}">
+             	<span class="text-danger" > #{error 'usuario.nome' /} </span>
+            	</div>
+            </div>
+            
+            <div class="form-group">
+             <label class="col-lg-4 control-label">E-mail</label>
+             <div class="form-group has-default col-sm-10">
+             	<input class = "form-control" type = "email" name = "usuario.email" value="${usuario?.email}">
+ 				<span class="text-danger" > #{error 'usuario.email' /} </span>
+             	
+             </div>
+            </div>
+            
+            <div class="form-group">
+             <label class="col-lg-10">Data de nascimento</label>
+             <div class="col-sm-10">
+             	<input class = "form-control" type = "date" name = "usuario.nasc" value = "${usuario?.nasc}">
+                <span class="text-danger" > #{error 'usuario.nasc' /} </span>
+                
+             </div>
+            </div>
+            
+            
+            <div class="form-group">
+             <label class="col-lg-3 col-sm-4">Gênero</label>
+             <div class="col-sm-10">
+             <select name ="usuario.genero" class = "form-control">
+             	<option></option>
+             	
+             	#{list items:generos, as:'gen'}
+             	<option #{if usuario?.genero == gen} selected #{/if}>${gen}</option>
+             	#{/list}
+             </select>
+             <span class="text-danger" > #{error 'usuario.genero' /} </span>
+             
+             </div>
+            </div>
+            
+            
+           		<div class="form-group form-check">
+                	<label class="col-lg-3 col-sm-4">Estudante</label>
+                		<label class="form-check-label">
+                  		<input class="form-check-input" type="radio" name="usuario.estudante" value="sim"#{if usuario?.estudante == "sim"} checked #{/if}> Sim
+                  			<span class="circle">
+                    		<span class="check"></span>
+                  			</span>
+                		</label>
+                		<label class="form-check-label">
+                  		<input class="form-check-input" type="radio" name="usuario.estudante" value="nao"#{if tarefa?.prioridade == "não"} checked #{/if}> Não
+                  			<span class="circle">
+                    		<span class="check"></span>
+                  			</span>
+                		</label>
+						<span class="text-danger" > #{error 'usuario.estudante' /} </span>
+              		</div>
+            
+            
+            <div class="form-group">
+             <label class="col-lg-3 col-sm-4">Senha</label>
+             <div class="col-sm-10">
+             	<input class= "form-control" type = "password" name = "senha" value=""><br>
+             	<span class="text-danger" > #{error 'usuario.senha' /} </span>
+             </div>
+            </div>
+            
+            <div class="form-group">
+             <label class="col-lg-12">Confirmar senha</label>
+             <div class="col-sm-10">
+             	<input class= "form-control" type = "password" name = "usuario.confirmarSenha" ><br>
+             	<span class="text-danger" > #{error 'usuario.senha' /} </span>
+             </div>
+            </div>
+            
+             <label class="col-lg-12">Adicione um avatar</label>
+             	<input type = "file" name = "foto" size = > <br>
+				<br>				
+             
+             #{if usuario?.id}
+	            <img src="/uploads/${session.get('usuario.id')}/${session.get('usuario.nomeFoto')}" width="50" height="50">
+             #{/if}
+            
+            
+            <div class="form-group">
+              <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-primary" type="submit">Enviar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</div>
+<!--custome script for all page-->
+	    <script src="@{'public/NiceAdmin/js/scripts.js'}"></script>
+	    <!-- custom script for this page-->
+	    <script src="@{'public/NiceAdmin/js/sparkline-chart.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/easy-pie-chart.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/jquery-jvectormap-1.2.2.min.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/jquery-jvectormap-world-mill-en.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/xcharts.min.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/jquery.autosize.min.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/jquery.placeholder.min.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/gdp-data.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/morris.min.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/sparklines.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/charts.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/jquery.slimscroll.min.js'}"></script>
+	
+<!-- javascripts -->
+	  <script src="@{'public/material-kit-master/assets/js/core/jquery.min.js'}" type="text/javascript"></script>
+ 	  <script src="@{'public/material-kit-master/assets/js/core/popper.min.js'}" type="text/javascript"></script>
+      <script src="@{'public/material-kit-master/assets/js/plugins/moment.min.js'}"></script>
+	  <script src="@{'public/NiceAdmin/js/jquery.js'}"></script>
+	  <script src="@{'public/NiceAdmin/js/jquery-ui-1.10.4.min.js'}"></script>
+	  <script src="@{'public/NiceAdmin/js/jquery-1.8.3.min.js'}"></script>
+	  <script type="text/javascript" src="@{'public/NiceAdmin/js/jquery-ui-1.9.2.custom.min.js'}"></script>
+	  <!-- bootstrap -->
+	  <script src="@{'public/material-kit-master/assets/js/core/bootstrap-material-design.min.js'}" type="text/javascript"></script>
+	  <!-- nice scroll -->
+	  <script src="@{'public/NiceAdmin/js/jquery.scrollTo.min.js'}"></script>
+	  <script src="@{'public/NiceAdmin/js/jquery.nicescroll.js'}" type="text/javascript"></script>
+	  <!-- charts scripts -->
+	  <script src="@{'public/NiceAdmin/assets/jquery-knob/js/jquery.knob.js'}"></script>
+	  <script src="@{'public/NiceAdmin/js/jquery.sparkline.js'}" type="text/javascript"></script>
+	  <script src="@{'public/NiceAdmin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js'}"></script>
+	  <script src="@{'public/NiceAdmin/js/owl.carousel.js'}"></script>
+	    <!--script for this page only-->
+	    <script src="@{'public/NiceAdmin/js/calendar-custom.js'}"></script>
+	    <script src="@{'public/NiceAdmin/js/jquery.rateit.min.js'}"></script>
+	    <!-- custom select -->
+	    <script src="@{'public/NiceAdmin/js/jquery.customSelect.min.js'}"></script>
+	    <script src="@{'public/NiceAdmin/assets/chart-master/Chart.js'}"></script>
+	

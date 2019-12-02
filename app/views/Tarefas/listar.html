@@ -1,0 +1,119 @@
+#{extends 'main.html' /}
+#{set title:'To-do' /}
+
+<!-- TAREFAS NÃO CONCLUIDAS -->
+<div class="row mr-3 ml-7">
+
+<div class="row ml-7">
+		<div class="col-lg-9">
+          <div class="card card-columns" >
+          <div class="col-lg-10 mr-auto ml-auto card-header card-header-danger text-center">
+                <h4 class="card-text">NÃO CONCLUÍDOS</h4>
+              </div>
+				
+				<tr>
+				<ul>
+				#{list items:tarefasNaoConcluidas, as: 'tarefa'}
+							<br>
+							<td>
+							<button type="button" class="btn btn-sm col-lg-11 ml-auto mr-auto" data-toggle="popover" data-placement="top" 
+							data-content="${tarefa.descricao}" data-container="body">${tarefa.titulo} | ${tarefa.prazo} </button>
+							</td>
+            					<div class="col-lg-11 ml-auto mr-auto">
+					              <td><a href = "@{Tarefas.deletar(tarefa.id)}"><button type="submit" name= "remove" class="btn btn-danger btn-sm col-lg-5 mr-auto ml-auto">Excluir</button></td>
+					              <td><a href = "@{Tarefas.editar(tarefa.id)}"><button type="submit" name= "edit" class="btn btn-info btn-sm col-lg-6 mr-auto ml-auto">Editar</button></td>
+					              <td><a href = "@{Tarefas.concluir(tarefa.id)}"><button type="submit" name= "concluir" class="btn btn-success btn-sm mr-auto ml-auto">Concluir</button></td>
+					              <td><a href = "@{Tarefas.intermediario(tarefa.id)}"><button type="submit" name= "intermediario" class="btn btn-warning btn-sm col-lg-6 mr-auto ml-auto">50% concluído</button></td>
+					              </div>
+				          	<tr></tr>          	           	
+						#{/list}
+						#{else}
+						Nenhuma tarefa cadastrada!
+						#{/else}
+						
+						
+						</ul>
+						</tr>
+              </div>
+</div>
+</div>
+
+<!-- FIM DOS CONCLUIDOS -->
+
+<!-- TAREFAS 50% -->
+
+<div class="row ml-7 mr-5">
+		<div class="col-lg-10 ">
+          <div class="card card-columns" >
+          <div class="col-lg-10 mr-auto ml-auto card-header card-header-warning text-center">
+                <h4 class="card-text">50% CONCLUÍDOS</h4>
+              </div>
+				
+				<tr>
+				<ul>
+				#{list items:tarefasIntermediario, as: 'tarefa'}					
+							<br>
+							<td><button type="button" class="btn btn-sm col-lg-10 mr-auto ml-auto" data-toggle="popover" data-placement="top" 
+							data-content="${tarefa.descricao}" data-container="body">${tarefa.titulo} | ${tarefa.prazo}</button></td>
+            					<div class="col-lg-10 mr-auto ml-auto">
+					              <td><a href ="@{Tarefas.deletar(tarefa.id)}"><button type="submit" name= "remove" class="btn btn-danger btn-sm col-lg-5 mr-auto ml-auto">Excluir</button></td>
+					              <td><a href = "@{Tarefas.editar(tarefa.id)}"><button type="submit" name= "edit" class="btn btn-info btn-sm col-lg-5 ml-auto mr-auto">Editar</button></td>
+					              <td><a href = "@{Tarefas.concluir(tarefa.id)}"><button type="submit" name= "concluir" class="btn btn-success btn-sm col-lg-10 mr-auto ml-auto">Concluir</button></td>
+					             </div>
+				          	<tr></tr>       
+						#{/list}
+						#{else}
+						Nenhuma tarefa 50% concluida!
+						#{/else}
+						</ul>
+						</tr>
+              </div>
+</div>
+</div>
+
+<!-- FIM DOS 50% -->
+
+<!-- CONCLUIDAS -->
+<div class="row">
+		<div class="col-lg-12 ">
+          <div class="card card-columns" >
+          <div class="col-lg-10 mr-auto ml-auto card-header card-header-success text-center">
+                <h4 class="card-text">CONCLUÍDOS</h4>
+              </div>
+				
+				<tr>
+				<ul>
+				#{list items:tarefasConcluidas, as: 'tarefa'}					
+							<br>
+							<td><button type="button" class="btn btn-sm col-lg-10 mr-5" data-toggle="popover" data-placement="right" 
+							data-content="${tarefa.descricao}" data-container="body">${tarefa.titulo} | ${tarefa.prazo}</button></td>
+            					
+            					<div >
+					              <td><a href ="@{Tarefas.deletar(tarefa.id)}"><button type="submit" name= "remove" class="btn btn-danger btn-sm ml-3">Excluir</button></td>
+					              <td><a href = "@{Tarefas.editar(tarefa.id)}"><button type="submit" name= "edit" class="btn btn-info btn-sm col-lg-4">Editar</button></td>
+					            </div>
+					        
+				          	<tr></tr>       
+				          	           	
+						#{/list}
+						#{else}
+						Nenhuma tarefa concluida!
+						#{/else}
+						</ul>
+						</tr>
+              </div>
+</div>
+</div>
+
+<!-- FIM CONCLUIDAS -->
+</div>
+
+<!-- BOTTOMS VOLTAR E ADICIONAR -->
+        <div class="text-center col-lg-10 mc-auto"> 
+           <a href = "@{Tarefas.form}"><button type="submit" name= "add" class="badge badge-pill badge-primary">Adicionar</button>
+		   <a href = "@{Application.index}"><button type="submit" name= "back" class="badge badge-pill badge-primary">Voltar</button>
+		</div>  
+
+
+
+

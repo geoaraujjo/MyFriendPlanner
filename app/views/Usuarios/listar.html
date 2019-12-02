@@ -1,0 +1,48 @@
+#{extends 'main.html' /}
+#{set title:'Dados Pessoais' /}
+
+<br>
+<br>
+<br>
+
+  <div class="main main-raised ml-auto col-md-11">
+    <div class="profile-content ml-auto ">
+      <div class="container">
+          <div class="col-md-6 ml-auto mr-auto">
+            <div class="profile">
+              <div class="avatar ml-auto mr-auto col-md-6">
+                <img src="/uploads/${session.get('IDUsuario')}/${session.get('fotoUsuario')}" alt="Circle Image" class="img-raised rounded-circle img-fluid" width="150">
+              </div>
+              <div class="name">
+                <h3 class="title text-center">${session.get('nomeUsuario')}</h3>
+                </div>
+            </div>
+          </div>
+        <div class="description text-center">
+          <h6 class="text-primary">Estas são as informações que o My Friend Planner possui de você ${session.get('nomeUsuario')}.</h6>
+        </div>
+        <div class="row">
+        <ul>
+		 	<label class="btn btn-primary btn-round">${session.get('nomeUsuario')}</label> 
+		 	<h6 class="text-center">NOME</h6>      
+        </ul>
+        <ul>
+		 	<label class="btn btn-primary btn-round">${session.get('emailUsuario')}</label>        
+       		<h6 class="text-center">EMAIL</h6>      
+        </ul>
+        <ul>
+		 	<label class="btn btn-primary btn-round">${session.get('nascUsuario')}</label>        
+       		<h6 class="text-center">NASCIMENTO</h6>      
+        </ul>
+        <ul>
+		 	<label class="btn btn-primary btn-round">${session.get('generoUsuario')}</label>        
+       		<h6 class="text-center">GÊNERO</h6>      
+        </ul>
+        
+        
+        </div>
+        </div>
+        </div>
+      </div>
+    
+

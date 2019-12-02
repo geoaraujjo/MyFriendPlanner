@@ -1,0 +1,79 @@
+#{extends 'main.html' /}
+#{set title:'Listagem' /}
+
+
+<!-- COMPROMISSOS NÃO CONCLUIDAS -->
+
+<div class="row mr-auto ml-auto col-lg-10">
+<div class="row">
+		<div class="col-lg-9">
+          <div class="card card-columns" >
+          <div class="col-lg-11 card-header card-header-danger text-center">
+                <h4 class="card-text">NÃO CONCLUÍDOS</h4>
+              </div>
+				
+				<tr>
+				<ul>
+				#{list items:compromissosNaoConcluidos, as: 'compromisso'}					
+							<br>
+							<td><button type="button" class="btn btn-sm col-lg-11 ml-auto mr-auto" data-toggle="popover" data-placement="top" 
+							data-content="${compromisso.descricao}" data-container="body">${compromisso.titulo} | ${compromisso.data}</button></td>
+							<div class= "row">
+            					<div class="col-lg-10 col-md-10 ml-auto mr-auto">
+					              <td><a href = "@{Compromissos.deletar(compromisso.id)}"><button type="submit" name= "remove" class="btn btn-danger btn-sm">Excluir</button></td>
+					              <td><a href = "@{Compromissos.editar(compromisso.id)}"><button type="submit" name= "edit" class="btn btn-info btn-sm">Editar</button></td>
+					              <td><a href = "@{Compromissos.concluir(compromisso.id)}"><button type="submit" name= "concluir" class="btn btn-success btn-sm">Concluir</button></td>
+					              </div>
+					        </div>
+				          	</td>	
+				          	<tr></tr>       
+				          	           	
+						#{/list}
+						#{else}
+						Nenhum compromisso cadastrado!
+						#{/else}
+						</ul>
+						</tr>
+              </div>
+</div>
+</div>
+
+<!-- COMPROMISSOS CONCLUIDAS -->
+<div class="row">
+		<div class="col-lg-12">
+          <div class="card card-columns" >
+          <div class="col-lg-11 card-header card-header-success text-center">
+                <h4 class="card-text">CONCLUÍDOS</h4>
+              </div>
+				
+				<tr>
+				<ul>
+				#{list items:compromissosConcluidos, as: 'compromisso'}					
+							<br>
+							<td><button type="button" class="btn btn-sm col-lg-10 ml-auto mr-auto" data-toggle="popover" data-placement="top" 
+							data-content="${compromisso.descricao}" data-container="body">${compromisso.titulo} | ${compromisso.data}</button></td>
+							<div class= "row ml-auto mr-auto">
+            					<div class="col-lg-10 col-md-10 ml-auto mr-auto">
+					              <td><a href = "@{Compromissos.deletar(compromisso.id)}"><button type="submit" name= "remove" class="btn btn-danger btn-sm">Excluir</button></td>
+					              <td><a href = "@{Compromissos.editar(compromisso.id)}"><button type="submit" name= "edit" class="btn btn-info btn-sm">Editar</button></td>
+					              </div>
+					        </div>
+				          	</td>	
+				          	<tr></tr>       
+				          	           	
+						#{/list}
+						#{else}
+						Nenhum compromisso cadastrado!
+						#{/else}
+						</ul>
+						</tr>
+              </div>
+</div>
+</div>
+</div>
+
+        
+        <div class="text-center col-lg-10 mc-auto"> 
+           <a href = "@{Compromissos.form}"><button type="submit" name= "add" class="badge badge-pill badge-primary">Adicionar</button>
+		   <a href = "@{Application.index}"><button type="submit" name= "back" class="badge badge-pill badge-primary">Voltar</button>
+		</div>  

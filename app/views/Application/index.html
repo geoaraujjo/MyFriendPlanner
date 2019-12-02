@@ -1,0 +1,84 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<br>
+<br>
+<br>
+<br>
+<div class="row mr-auto ml-5">
+<div class="row">
+<div class="card col-lg-11 ml-0 mr-1">
+<div class="card-header card-header-primary text-center"> 
+<i class="icon_documents_alt"></i>TAREFAS </div>
+
+<div class="card-body ">
+                  <div class="tab-content text-center">
+                      <p> 
+                      Crie sua checklist de hoje  
+                      </p>
+                      <a href = "@{Tarefas.form}"><button type="submit" name= "add" class="badge badge-pill badge-primary">Adicione</button>
+                      </a>
+                      <br>
+                      <p>
+                      	Confira sua checklist
+                      </p>
+                      <a href = "@{Tarefas.listar}"><button type="submit" name= "add" class="badge badge-pill badge-primary">Checklist</button>
+                      </a>
+                </div>
+</div>
+</div>
+</div>
+
+<div class="row  ml-5 mr-5">
+<div class="card col-lg-12 ml-5 mr-4">
+<div class="card-header card-header-primary text-center"> 
+<i class="icon_calendar"></i>CALENDÁRIO</div>
+
+<div class="card-body ">
+                  <div class="tab-content text-center">
+                      <p>
+                      Confira seu mês
+                      </p>
+                      <a href = "@{Usuarios.calendar}"><button type="submit" name= "add" class="badge badge-pill badge-primary">Mensal</button>
+                      </a>
+                      <p>
+                      Confira sua semana
+                      </p>
+                      <a href = "@{Usuarios.calendar}"><button type="submit" name= "add" class="badge badge-pill badge-primary">Semana</button>
+                      </a>
+                      <p>
+                      Confira seu dia
+                      </p>
+                      <a href = "@{Usuarios.calendar}"><button type="submit" name= "add" class="badge badge-pill badge-primary">Diário</button>
+                      </a>
+                </div>
+</div>
+</div>
+</div>
+
+<div class="row ml-auto mr-auto">
+<div class="card col-lg-10 mr-5 ml-5">
+<div class="card-header card-header-primary text-center"> 
+<i class="icon_clock_alt"></i>COMPROMISSOS</div>
+
+<div class="card-body ">
+                  <div class="tab-content text-center">
+                  <br>
+                      <p>
+                      Quer adicionar um novo compromisso?
+                      </p>
+                      <a href = "@{Compromissos.form}"><button type="submit" name= "add" class="badge badge-pill badge-primary">Adicione</button>
+                      </a>
+                      <p>
+                      Já olhou seus compromisso hoje?  
+                      </p>
+                      <a href = "@{Compromissos.listar}"><button type="submit" name= "add" class="badge badge-pill badge-primary">Checklist</button>
+                      </a>
+                      </p>
+                      
+                </div>
+</div>
+</div>
+</div>
+</div>
+
